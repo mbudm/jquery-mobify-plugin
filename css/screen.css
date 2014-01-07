@@ -1,3 +1,7 @@
+.mobifyPreview{
+	display:none;
+} 
+
 /* wrap everything in a media query that matches your enable_width */
 @media all and (max-width:320px) {
 	/*
