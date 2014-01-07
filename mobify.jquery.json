@@ -1,0 +1,27 @@
+{
+    "name": "color",
+    "title": "jQuery Mobify",
+    "description": "jQuery plugin designed to help quickly make legacy sites responsive.",
+    "keywords": [
+        "mobile",
+        "responsive"
+    ],
+    "version": "1.0",
+    "author": {
+        "name": "Steve Roberts",
+        "url": "http://mbudm.com"
+    },
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "https://github.com/mbudm/jquery-mobify-plugin/LICENSE.txt"
+        }
+    ],
+    "bugs": "https://github.com/mbudm/jquery-mobify-plugin/issues",
+    "homepage": "https://github.com/mbudm/jquery-mobify-plugin",
+    "docs": "https://github.com/mbudm/jquery-mobify-plugin",
+    "download": "https://github.com/mbudm/jquery-mobify-plugin",
+    "dependencies": {
+        "jquery": ">=1.8"
+    }
+}
