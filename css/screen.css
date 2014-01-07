@@ -1,0 +1,43 @@
+/* wrap everything in a media query that matches your enable_width */
+@media all and (max-width:320px) {
+	/*
+	Structural CSS: you probably want to use this in your implementation
+	*/
+	/* hide the preview - show only when the mobified element is closed */
+	.mobifyPreview{
+		display:none;
+	} 
+	.mobifyIsClosed .mobifyPreview{
+		display:block; /* use whatever your preferred display value is */
+	}
+	
+	/* prettifying CSS - it's optional, you probably want to roll your own to fit in with your other styles */
+	.mobifyTrigger{
+		white-space: nowrap;
+		overflow:hidden;
+	}
+	.mobifyTrigger:before{
+		content:"+";
+		text-align:center;
+		width:1.4em;
+		margin-right:0.5em;
+		display:inline-block;
+		font-weight:bold;
+		color:#fff;
+		background:#aaa;
+		border-radius:0.8em;
+		line-height:1.4;
+	}
+	.mobifyIsOpen .mobifyTrigger:before{
+		content:"-";
+	}
+	.mobifyPreview{
+		color:#777;
+		font-size:0.5em;
+		font-weight:normal;
+		padding-left:3.8em; /* match toggle button */
+		white-space: nowrap;
+		overflow:hidden;
+		text-overflow: ellipsis;
+	}
+} /* end media query */
