@@ -31,6 +31,7 @@ $.extend(Mobify.prototype, {
 	triggerClassName: 'mobifyTrigger',
 	summaryClassName: 'mobifyPreview',
 	closableClassName: 'mobifyClosable',
+	animateClosables:true,
 	
 	
 	/* Override the default settings for all mobify instances.
@@ -85,8 +86,12 @@ $.extend(Mobify.prototype, {
 		 	$.mobify._enableMobify(event.data.t);
 		 });
 		
-		/* store the trigger element */
+		/* store the trigger element - if none found then abort*/
 		inst.settings.trigElt = target.find(inst.settings.trigger_element);
+		if(inst.settings.trigElt.length == 0){
+			console.log('No trigger element found - I looked for '+ inst.settings.trigger_element, target);
+			return;
+		}
 		
 		inst.settings.closables = inst.settings.trigElt.siblings();
 		
@@ -160,7 +165,11 @@ $.extend(Mobify.prototype, {
 			
 		/* do open/close and set class */
 		if(inst.settings.isOpen){
-			inst.settings.closables.slideDown('fast'); 
+			if(inst.settings.animateClosables){
+				inst.settings.closables.slideDown('fast'); 
+			}else{
+				inst.settings.closables.show(); 
+			}
 			if (!target.hasClass(this.isOpenClass)) {
 				target.addClass(this.isOpenClass);
 			}
@@ -172,7 +181,11 @@ $.extend(Mobify.prototype, {
 				$.mobify._accordionMobify(target);
 			}
 		}else{
-			inst.settings.closables.slideUp('fast'); 
+			if(inst.settings.animateClosables){
+				inst.settings.closables.slideUp('fast'); 
+			}else{
+				inst.settings.closables.hide(); 
+			}
 			if (target.hasClass(this.isOpenClass)){
 				target.removeClass(this.isOpenClass);	
 			}
