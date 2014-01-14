@@ -82,9 +82,11 @@ $.extend(Mobify.prototype, {
 		$.extend(inst.settings, settings);
 		
 		/* bind to resize event */
-		$(window).bind('resize.mobify' ,{t: target},function(event) {
-		 	$.mobify._enableMobify(event.data.t);
-		 });
+		if(inst.settings.enable_width !== false ){
+			$(window).bind('resize.mobify' ,{t: target},function(event) {
+				$.mobify._enableMobify(event.data.t);
+			 });
+		}
 		
 		/* store the trigger element - if none found then abort*/
 		inst.settings.trigElt = target.find(inst.settings.trigger_element);
@@ -139,12 +141,19 @@ $.extend(Mobify.prototype, {
 			return;
 		}
 		var inst = $.data(target[0], PROP_NAME);
-		var enableCheck = $(window).width() <= inst.settings.enable_width ? true : false ;
+		
 		if(enableCheck !== inst.settings.isEnabled){
-			inst.settings.isEnabled = enableCheck;
-			$.mobify._updateMobify(target);
+			if(inst.settings.enable_width !== false){
+				var enableCheck = $(window).width() <= inst.settings.enable_width ? true : false ;
+				inst.settings.isEnabled = enableCheck;
+				$.mobify._updateMobify(target);
+			}else{
+				/* turn on automatically, presumes you are using a class in your selector to determine if elements should be mobified eg html.touch .myClassToBeMobified */
+				inst.settings.isEnabled = true;
+				$.mobify._updateMobify(target);
+			}
 		}else{
-			
+			// already enabled, nothing to do here
 		}
 	},
 	

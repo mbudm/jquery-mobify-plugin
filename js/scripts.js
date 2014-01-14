@@ -10,7 +10,7 @@ $(function() {
 		/* pass any of the defaults as options:
 		
 		trigger_element: ":first",
-		enable_width: 480,
+		enable_width: 480, /* make false to avoid resource hungry binding to resize - will just mobify all matched elements
 		isEnabled: false,
 		isOpen: true,
 		accordionMode: false,
