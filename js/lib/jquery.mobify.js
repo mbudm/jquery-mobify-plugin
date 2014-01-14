@@ -89,7 +89,8 @@ $.extend(Mobify.prototype, {
 		/* store the trigger element - if none found then abort*/
 		inst.settings.trigElt = target.find(inst.settings.trigger_element);
 		if(inst.settings.trigElt.length == 0){
-			console.log('No trigger element found - I looked for '+ inst.settings.trigger_element, target);
+			//console.log('No trigger element found - I looked for '+ inst.settings.trigger_element, target);
+			target.removeClass(this.markerClassName);
 			return;
 		}
 		
@@ -134,6 +135,9 @@ $.extend(Mobify.prototype, {
 	   @param  target  (element) the control to check */
 	_enableMobify: function(target) {
 		target = $(target);
+		if (!target.hasClass(this.markerClassName)) {
+			return;
+		}
 		var inst = $.data(target[0], PROP_NAME);
 		var enableCheck = $(window).width() <= inst.settings.enable_width ? true : false ;
 		if(enableCheck !== inst.settings.isEnabled){
@@ -149,6 +153,9 @@ $.extend(Mobify.prototype, {
 	   @param  showOrhide  (Boolean) control the hide/show state  */
 	_updateMobify: function(target,showOrhide) {
 		target = $(target);
+		if (!target.hasClass(this.markerClassName)) {
+			return;
+		}
 		var inst = $.data(target[0], PROP_NAME);
 		
 		/* opening or closing ? */
@@ -198,6 +205,9 @@ $.extend(Mobify.prototype, {
 	   @param  target  (element) the control to affect */
 	_accordionMobify: function(target) {
 		target = $(target);
+		if (!target.hasClass(this.markerClassName)) {
+			return;
+		}
 		for(var inst in this._instances){
 			if(this._instances[inst][0] != target[0]){
 				$.mobify._updateMobify(this._instances[inst],false);
